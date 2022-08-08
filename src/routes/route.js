@@ -1,38 +1,62 @@
 const express = require('express');
 const abc = require('../introduction/intro')
 const router = express.Router();
+const xyz =require('../logger/logger.js')
+const util = require('../util/helper.js'    )
+const validator = require('../validator/formatter.js')
+const lodash = require('lodash')
+
+
+
+
 
 router.get('/test-me', function (req, res) {
     console.log('My batch is', abc.name)
     abc.printName()
-    logger.welcome()
-
-    res.send('My second ever api!')
+    res.send('welcome everyone!')
 });
 
-router.get('/students', function (req, res){
-    let students = ['Sabiha', 'Neha', 'Akash']
-    res.send(students)
+
+router.get('/test-you', function(req, res){
+    console.log("okay I am running good")
+    res.send('This is the second routes implementation')
 })
 
-router.get('/student-details/:name', function(req, res){
-    /*
-    params is an attribute inside request that contains 
-    dynamic values.
-    This value comes from the request url in the form of an 
-    object where key is the variable defined in code 
-    and value is what is sent in the request
-    */
+router.get('/test-me1', function (req, res) {
+   
+    xyz.wlc()
+    res.send('welcome folks!')
+});
+module.exports = router;
+// adding this comment for no reason
 
-    let requestParams = req.params
+router.get('/test-me2', function (req, res) {
+   
+    console.log(util.dy())
+    console.log(util.batch())
+    res.send('Day is printed')
+});
+module.exports = router;
 
-    // JSON strigify function helps to print an entire object
-    // We can use any ways to print an object in Javascript, JSON stringify is one of them
-    console.log("This is the request "+ JSON.stringify(requestParams))
-    let studentName = requestParams.name
-    console.log('Name of the student is ', studentName)
+router.get('/test-me3', function (req, res) {
+   console.log(validator.upr());
+   console.log(validator.trm());
+   console.log(validator.lwr());
+   
+    res.send('Executed successfully')
+});
+
+router.get('/test-me5', function (req, res) {
+    let a =lodash.chunk(['a', 'b', 'c', 'd'], 2);
+    console.log(a)
+    res.send('Executed successfully')
+});
+
+module.exports = router;
+
+router.get('/student details : name', function (req, res) {
     
-    res.send('Dummy response')
-})
+    res.send('Executed successfully')
+});
 
 module.exports = router;
