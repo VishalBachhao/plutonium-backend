@@ -11,4 +11,10 @@ router.post("/createUser", UserController.createUser  )
 
 router.get("/getUsersData", UserController.getUsersData)
 
+//eg---------
+
+router.post("/createBooks", UserController.createBooks  )
+
+
+
 module.exports = router;
