@@ -38,7 +38,7 @@ const bookSchema = new mongoose.Schema( {
     authorName: String,
     category: {
         type: String,
-        enum: ["Fiction", "Thriller", "Crime","Romantic","Comedy"] 
+        enum: ["Fiction", "Thriller", "Crime","Romantic","Comedy",] 
     },
     year: Number,
     
