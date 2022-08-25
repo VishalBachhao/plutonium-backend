@@ -16,6 +16,7 @@ mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzot
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
 
+<<<<<<< HEAD
 /*app.use (
     function (req, res, next) {
         console.log ("inside GLOBAL MW");
@@ -33,6 +34,15 @@ mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzot
         next();
   }
   );
+=======
+// app.use (
+//     function (req, res, next) {
+//         console.log ("inside GLOBAL MW");
+//         next();
+//   }
+//   );
+  
+>>>>>>> 9e4c16d4ea1ae2e8bdde64eac93caf8467fd54bc
 
 
 app.use('/', route);
