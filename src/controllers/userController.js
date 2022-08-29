@@ -1,9 +1,9 @@
-const jwt = require("jsonwebtoken");
+/*const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
-/*
+
   Read all the comments multiple times to understand why we are doing what we are doing in login api and getUserData api
-*/
+
 const createUser = async function (abcd, xyz) {
   //You can name the req, res objects anything.
   //but the first parameter is always the request 
@@ -95,4 +95,9 @@ const updateUser = async function (req, res) {
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
-module.exports.loginUser = loginUser;
+module.exports.loginUser = loginUser;*/
+
+//==================================
+
+
+
