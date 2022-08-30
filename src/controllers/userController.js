@@ -1,14 +1,14 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
-const createUser = async function (abcd, xyz) {
+const createUser = async function (req, res) {
   //You can name the req, res objects anything.
   //but the first parameter is always the request 
   //the second parameter is always the response
-  let data = abcd.body;
+  let data = req.body;
   let savedData = await userModel.create(data);
-  console.log(abcd.newAtribute);
-  xyz.send({ msg: savedData });
+  //console.log(abcd.newAtribute);
+  res.send({ msg: savedData });
 };
 
 const loginUser = async function (req, res) {
@@ -82,24 +82,23 @@ const updateUser = async function (req, res) {
   let userData = req.body;
   let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData);
   res.send({ status: updatedUser, data: updatedUser });
-};
+};true
 
 const postMessage = async function (req, res) {
     let message = req.body.message
     // Check if the token is present
     // Check if the token present is a valid token
     // Return a different error message in both these cases
+    
+    
     let token = req.headers["x-auth-token"]
     if(!token) return res.send({status: false, msg: "token must be present in the request header"})
     let decodedToken = jwt.verify(token, 'functionup-thorium')
-
     if(!decodedToken) return res.send({status: false, msg:"token is not valid"})
-    
     //userId for which the request is made. In this case message to be posted.
     let userToBeModified = req.params.userId
     //userId for the logged-in user
     let userLoggedIn = decodedToken.userId
-
     //userId comparision to check if the logged-in user is requesting for their own data
     if(userToBeModified != userLoggedIn) return res.send({status: false, msg: 'User logged is not allowed to modify the requested users data'})
 
@@ -115,8 +114,21 @@ const postMessage = async function (req, res) {
     return res.send({status: true, data: updatedUser})
 }
 
+
+
+let deleteUser = async function(req,res){
+let usr = req.params.userId
+let usrDt = await userModel.findById(usr)
+if(!usrDt) return res.send({status: false, msg: 'No such user exists'})
+let updatUser = await userModel.findOneAndUpdate({_id: usrDt._id},{isDeleted:true}, {new: true})
+res.send({status:true,msg:updatUser})
+
+}
+
+
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.postMessage = postMessage
+module.exports.deleteUser = deleteUser
